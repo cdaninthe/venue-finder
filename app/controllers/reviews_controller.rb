@@ -2,10 +2,12 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
+    #NOT NEEDED
     def index
         render json: Review.all, status: :ok
     end
 
+    #UPDATE THIS TO ATTACH REVIEW TO A VENUE
     def create
         review = @current_user.reviews.create!(review_params)
         render json: review, status: :created
